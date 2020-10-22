@@ -31,7 +31,7 @@
                     <fieldset>
                       <legend>Check variable/s for your download.</legend>
                       <div class="checkbox form-group">
-                       <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="checkAll" data-check-pattern="[id^='key']" /><label for="yes" class="lbl" >Check All</label></div>
+                       <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="checkAll" data-check-pattern="[id^='key']" /><label for="checkAll" class="lbl" >Check All</label></div>
                        @foreach ($variable as $label)
                           <div class="col-md-12 margin-bottom-10">
                             <input type='checkbox' name="{{$label->variable_name}}" id="key{{$label->variable_name}}" value="{{$label->variable_name}}">
@@ -42,7 +42,7 @@
                     </fieldset>
                     <div class="form-group">
                       <div class="col-lg-4 col-md-offset-10 padding-left-10 padding-top-20">                        
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="request" disabled>Submit</button>
                       </div>
                     </div>
                   </form>

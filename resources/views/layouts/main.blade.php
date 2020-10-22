@@ -79,6 +79,7 @@
 
     <script src="{{asset('assets/corporate/scripts/layout.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/pages/scripts/bs-carousel.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets/js/custom.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             Layout.init();    
