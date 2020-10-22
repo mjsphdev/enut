@@ -57,6 +57,7 @@
                 <!-- BEGIN RIGHT SIDEBAR -->            
                 <div class="col-md-5 col-sm-5 pull-right" style="overflow-y: scroll; height:700px;">
                   <div class="form-info">
+                    <i style="color:red"><h2>*Must Read</h2></i>
                     <h2><em>FNRI Disclaimer</em> User Agreement</h2>
                     <h2>Nutrition Survey Data Public Use Files (PUFs)</h2>
                     <p>The Department of Science and Technology (DOST) - Food and Nutrition Research Institute (FNRI) recognizes the need to provide access to the data collected from the National Nutrition Surveys in accordance with Section III, Article 7 of the Philippine Constitution. This disclaimer-user agreement details the sources and nature of the data. It specifies the responsibility of the data user in processing and understanding the data files.</p>
@@ -73,9 +74,9 @@
                        <li><p>Data user should acknowledge Department of Science and Technology - Food and Nutrition Research Institute as the source of data.</p></li>
                     </ol>
                     <h2>Additional Terms and Conditions</h2>
-                              <p>The DOST-FNRI reserves the right to revise, modify or amend this disclaimer-user agreement. Any violation of this agreement shall be subjected to 
-                                  the penalties as stipulated in the Data Privacy Act.</p>
-                    <button type="button" class="btn btn-default">More details</button>
+                    <p>The DOST-FNRI reserves the right to revise, modify or amend this disclaimer-user agreement. Any violation of this agreement shall be subjected to 
+                    the penalties as stipulated in the Data Privacy Act.</p>
+                    <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="iAgree"/><label for="iAgree" class="lbl" >I Agree to the FNRI Disclaimer - User Agreement</label></div>
                   </div>
                 </div>
                 <!-- END RIGHT SIDEBAR -->            
