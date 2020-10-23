@@ -40,11 +40,6 @@
                         @endforeach
                       </div>
                     </fieldset>
-                    <div class="form-group">
-                      <div class="col-lg-4 col-md-offset-10 padding-left-10 padding-top-20">                        
-                        <button type="submit" class="btn btn-primary" id="request" disabled>Submit</button>
-                      </div>
-                    </div>
                   </form>
                 </div>
               </div>
@@ -57,8 +52,8 @@
                 <!-- BEGIN RIGHT SIDEBAR -->            
                 <div class="col-md-5 col-sm-5 pull-right" style="overflow-y: scroll; height:700px;">
                   <div class="form-info">
-                    <i style="color:red"><h2>*Must Read</h2></i>
-                    <h2><em>FNRI Disclaimer</em> User Agreement</h2>
+                    <h2><em>Important</em> Information</h2>
+                    <h2>FNRI Disclaimer User Agreement</h2>
                     <h2>Nutrition Survey Data Public Use Files (PUFs)</h2>
                     <p>The Department of Science and Technology (DOST) - Food and Nutrition Research Institute (FNRI) recognizes the need to provide access to the data collected from the National Nutrition Surveys in accordance with Section III, Article 7 of the Philippine Constitution. This disclaimer-user agreement details the sources and nature of the data. It specifies the responsibility of the data user in processing and understanding the data files.</p>
                     <h2>Access Conditions</h2>
@@ -77,6 +72,11 @@
                     <p>The DOST-FNRI reserves the right to revise, modify or amend this disclaimer-user agreement. Any violation of this agreement shall be subjected to 
                     the penalties as stipulated in the Data Privacy Act.</p>
                     <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="iAgree"/><label for="iAgree" class="lbl" >I Agree to the FNRI Disclaimer - User Agreement</label></div>
+                    <div class="form-group">
+                      <div class="col-lg-4 col-md-offset-5 padding-left-0 padding-top-20">                        
+                        <button type="submit" class="btn btn-primary" id="request" disabled>Submit</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <!-- END RIGHT SIDEBAR -->            

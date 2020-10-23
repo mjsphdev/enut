@@ -52,10 +52,10 @@
                   <!-- CATEGORIES START -->
                   <h3 class="no-top-space">Nutrition Surveys</h3>
                   <ul class="nav sidebar-categories margin-bottom-40">
-                    <li class="active"><a href="{{ route('public.presentation', [rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">All ({{$all}})</a></li>
+                    <li class="{{($year == 'all') ? 'active' : ''}}"><a href="{{ route('public.presentation', [rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">All ({{$all}})</a></li>
                     @foreach ($surveys as $survey)
-                        <li><a href="{{ route('public.presentation', [rtrim(strtr(base64_encode($survey->year), '+/', '-_'), '=')]) }}">{{$survey->year}} - {{$survey->survey_type}} ({{$counts[$year_count++]->count}})</a><li>
-				    @endforeach	  
+                        <li class="{{($survey->year == $year) ? 'active' : ''}}"><a href="{{ route('public.presentation', [rtrim(strtr(base64_encode($survey->year), '+/', '-_'), '=')]) }}">{{$survey->year}} - {{$survey->survey_type}} ({{$counts[$year_count++]->count}})</a><li>
+				            @endforeach	  
                   </ul>
                   <!-- CATEGORIES END -->
                 </div>

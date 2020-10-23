@@ -52,9 +52,9 @@
                   <!-- CATEGORIES START -->
                   <h3 class="no-top-space">Nutrition Surveys</h3>
                   <ul class="nav sidebar-categories margin-bottom-40">
-                    <li class="active"><a href="{{ route('public.puf', [rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">All ({{$all}})</a></li>
+                    <li class="{{($pufyear == 'all') ? 'active' : ''}}"><a href="{{ route('public.puf', [rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">All ({{$all}})</a></li>
                     @foreach ($surveys as $survey)
-                        <li><a href="{{ route('public.puf', [rtrim(strtr(base64_encode($survey->year), '+/', '-_'), '=')]) }}">{{$survey->year}} - {{$survey->survey_type}} ({{count($counts[$survey->year])}})</a><li>
+                        <li class="{{($survey->year == $pufyear) ? 'active' : ''}}"><a href="{{ route('public.puf', [rtrim(strtr(base64_encode($survey->year), '+/', '-_'), '=')]) }}">{{$survey->year}} - {{$survey->survey_type}} ({{count($counts[$survey->year])}})</a><li>
 				            @endforeach	  
                   </ul>
                   <!-- CATEGORIES END -->

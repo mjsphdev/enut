@@ -11,6 +11,10 @@
 |
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::group(['middleware' => ['guest'], 'as' => 'public.'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'PageController@index']);
 
@@ -38,7 +42,3 @@ Route::group(['middleware' => ['guest'], 'as' => 'public.'], function () {
     Route::get('/{page_title}', ['as' => 'privacy', 'uses' => 'PageController@privacy']);
 
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

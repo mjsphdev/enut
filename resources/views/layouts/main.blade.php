@@ -2,7 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  
+  @if(!Route::is('login') && !Route::is('register') && !Route::is('password.request'))
   <title>{{{ $title == '' ? 'eNutrition' : 'eNutrition'.' | '.$title }}}</title>
+  @elseif(Route::is('login'))
+  <title>Login</title>
+  @elseif(Route::is('register'))
+  <title>Register</title>
+  @elseif(Route::is('password.request'))
+  <title>Send Reset Password Link</title>
+  @endif
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
