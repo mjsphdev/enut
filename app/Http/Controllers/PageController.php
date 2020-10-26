@@ -128,6 +128,11 @@ class PageController extends Controller
         return view('about', compact('content'))->with(['title' => 'About']);
     }
 
+    public function contact()
+    {
+        return view('contact')->with(['title' => 'Contact']);
+    }
+
     public function privacy($page_title)
     {
         $content = PageContent::where('slug', $page_title)->firstOrFail(['id', 'page_title', 'page_content', 'slug']);

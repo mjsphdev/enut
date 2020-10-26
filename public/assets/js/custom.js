@@ -1,3 +1,11 @@
+$(window).on("scroll", function () {
+  var scrollPos = $(window).scrollTop();
+  var winHeight = $(window).height();
+  var docHeight = $(document).height();
+  var perc = (100 * scrollPos) / (docHeight - winHeight);
+  $("#indicator").width(perc + "%");
+});
+
 jQuery(function () {
     jQuery("[data-check-pattern]").checkAll();
   });
@@ -30,6 +38,35 @@ jQuery(function () {
     };
   })(jQuery);
 
-  $("#iAgree").click(function () {
+  $("#iAgree").on("click",function () {
     $("#request").attr("disabled", !this.checked);
   });
+  
+$("#send-email").on("submit", function (e) {
+  $(document).ajaxSend(function() {
+		$("#overlay").fadeIn(300);　
+	});
+  e.preventDefault();
+  var data = $(this).serialize();
+  var url = $(this).attr("action");
+  var post = $(this).attr("method");
+  $.ajax({
+    type: post,
+    url: url,
+    data: data,
+    dataTy: "json",
+    success: function (data) {
+      swal({
+        title: "Success",
+        text: data.success,
+        icon: "success",
+        button: "Okay",
+      })
+    $("#send-email")[0].reset()
+    }
+  }).done(function() {
+    setTimeout(function(){
+      $("#overlay").fadeOut(300);
+    },500);
+  });
+});

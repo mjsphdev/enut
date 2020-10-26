@@ -1,5 +1,6 @@
     <!-- BEGIN HEADER -->
     <div class="header">
+    <div id="indicator"></div>
       <div class="container">
         <a class="site-logo" href="{{route('public.home')}}"><img src="{{asset('assets/corporate/img/logos/e.png')}}" alt="eNutrition"></a>
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>

@@ -50,7 +50,7 @@
   <link href="{{asset('assets/pages/css/slider.css')}}" rel="stylesheet">
   <link href="{{asset('assets/corporate/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('assets/corporate/css/style-responsive.css')}}" rel="stylesheet">
-  <link href="{{asset('assets/corporate/css/themes/green.css')}}" rel="stylesheet" id="style-color">
+  <link href="{{asset('assets/corporate/css/themes/blue.css')}}" rel="stylesheet" id="style-color">
   <link href="{{asset('assets/corporate/css/custom.css')}}" rel="stylesheet">
   <link href="{{asset('assets/plugins/uniform/css/uniform.default.css')}}" rel="stylesheet">
   <!-- Theme styles END -->
@@ -88,6 +88,7 @@
 
     <script src="{{asset('assets/corporate/scripts/layout.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/pages/scripts/bs-carousel.js')}}" type="text/javascript"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('assets/js/custom.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {

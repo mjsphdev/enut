@@ -1,1 +1,41 @@
 /* here you can put your own css to customize and override the theme */
+#indicator{
+    position: fixed;
+    top:0;
+    left:0;
+    height: 5px;
+    background-color:#0d4e86;
+    z-index: 999;
+}
+
+#overlay{	
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+	height:100%;
+	display: none;
+	background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;  
+}
+.spinner {
+	width: 40px !important;
+	height: 40px !important;
+	border: 4px #ddd solid !important;
+	border-top: 4px #1ab41a solid !important;
+	border-radius: 50% !important;
+	animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+	100% { 
+		transform: rotate(360deg); 
+	}
+}
+.is-hide{
+	display:none;
+}

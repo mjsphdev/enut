@@ -27,19 +27,7 @@
                       <div class="item active">
                         <img src="assets/pages/img/pics/bldg3.jpg" alt="">
                         <div class="carousel-caption">
-                          <p>Excepturi sint occaecati cupiditate non provident</p>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <img src="assets/pages/img/pics/img1-medium.jpg" alt="">
-                        <div class="carousel-caption">
-                          <p>Ducimus qui blanditiis praesentium voluptatum</p>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <img src="assets/pages/img/pics/img2-medium.jpg" alt="">
-                        <div class="carousel-caption">
-                          <p>Ut non libero consectetur adipiscing elit magna</p>
+                          <p>DOST - Food and Nutrition Research Institute</p>
                         </div>
                       </div>
                     </div>

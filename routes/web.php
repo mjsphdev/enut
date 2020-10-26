@@ -23,7 +23,7 @@ Route::group(['middleware' => ['guest'], 'as' => 'public.'], function () {
     Route::get('/acknowledgement', ['as' => 'acknowledgement', 'uses' => 'PageController@acknowledgement']);
 
     Route::get('/contact-us', ['as' => 'contact', 'uses' => 'PageController@contact']);
-    // Route::post('/contact/send', ['as' => 'send.email', 'uses' => 'Public_page\SendEmailController@send']);
+    Route::post('/contact/send', ['as' => 'send.email', 'uses' => 'SendEmailController@send']);
 
     
     Route::get('/facts-and-figures/{year}', ['as' => 'factsfigures', 'uses' => 'PageController@factsandfigures']);
