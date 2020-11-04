@@ -92,22 +92,33 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal form-without-legend" role="form">
-                    <div class="form-group">
-                      <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                  <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+                    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                      <label for="email" class="col-lg-4 control-label">Email @if ($errors->has('email'))<span class="require">*</span>@endif</label>
                       <div class="col-lg-8">
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" name="email" id="email">
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                      <label for="password" class="col-lg-4 control-label">Password @if ($errors->has('password'))<span class="require">*</span>@endif</label>
                       <div class="col-lg-8">
-                        <input type="text" class="form-control" id="password">
+                        <input type="password" class="form-control" name="password" id="password">
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0">
-                        <a href="page-forgotton-password.html">Forget Password?</a>
+                        <a href="{{ route('password.request') }}">Forget Password?</a>
                       </div>
                     </div>
                     <div class="row">

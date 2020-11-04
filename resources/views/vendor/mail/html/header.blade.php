@@ -1,7 +1,7 @@
 <tr>
     <td class="header">
-        <a href="{{ $url }}">
-            {{ $slot }}
+        <a href="{{ route('home') }}">
+            ENUTRITION
         </a>
     </td>
 </tr>
