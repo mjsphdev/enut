@@ -212,7 +212,7 @@ class PageController extends Controller
 
     public function puf_request($id, $year){
         if(!Auth::check()){
-            return redirect()->back()->with('message', '<a href="{{route("register")}}">Create an account</a> or <a href="{{route("login")}}">Login</a> to your ENUTRITION Account first!');
+            return redirect()->back()->with('message', '<a href="{{route("register")}}">Create an account</a> or <a href="{{ route("login") }}">Login</a> to your ENUTRITION Account first!');
         }
         $id = base64_decode(str_pad(strtr($id, '-_', '+/'), strlen($id) % 4, '='));
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));

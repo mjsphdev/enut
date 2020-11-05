@@ -16,7 +16,7 @@
             <div class="content-page">
                 @if(session()->has('message'))
                     <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle"></i> {!! session()->get('message') !!}
+                        <i class="fas fa-exclamation-circle"></i> {!!session()->get('message')!!}
                     </div>
                 @endif
               <div class="row">
