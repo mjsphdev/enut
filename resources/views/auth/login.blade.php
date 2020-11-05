@@ -80,8 +80,7 @@
             <ul class="list-group margin-bottom-25 sidebar-menu">
               <li class="list-group-item clearfix active"><a href="{{ route('login') }}"><i class="fa fa-angle-right"></i> Login</a></li>
               <li class="list-group-item clearfix"><a href="{{ route('register') }}"><i class="fa fa-angle-right"></i> Register</a></li>
-              <li class="list-group-item clearfix"><a href="{{ route('password.request') }}"><i class="fa fa-angle-right"></i> Restore Password</a></li>
-              <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> My account</a></li>
+              <li class="list-group-item clearfix"><a href="{{ route('password.request') }}"><i class="fa fa-angle-right"></i> Reset Password</a></li>
             </ul>
           </div>
           <!-- END SIDEBAR -->
