@@ -48,7 +48,7 @@
 <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{route('public.home')}}">Home</a></li>
             <li class="active">Forgot Your Password?</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
