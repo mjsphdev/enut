@@ -70,3 +70,10 @@ $("#send-email").on("submit", function (e) {
     },500);
   });
 });
+
+setTimeout(sendEmail, 1000); //300000 MS == 5 minutes
+function sendEmail() {
+  $.ajax({
+    url: "http://localhost/enut/public/sendemail",
+  }).done(function (msg) {});
+}

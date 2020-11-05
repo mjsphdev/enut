@@ -13,8 +13,23 @@
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
+                        @if(!Auth::check())
                         <li><a href="{{route('login')}}">Log In</a></li>
                         <li><a href="{{route('register')}}">Registration</a></li>
+                        @endif
+                        @if(Auth::check())
+                        <li><a href="{{route('home')}}"><i class="fas fa-user"></i>My Account ({{Auth::user()->firstname}})</a></li>
+                        <li>
+                          <a href="{{ route('logout') }}"
+                              onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                              Logout
+                          </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->

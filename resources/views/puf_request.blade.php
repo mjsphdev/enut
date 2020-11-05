@@ -12,9 +12,16 @@
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
+          <form action="{{ URL::to('puf/request') }}" method="POST" id="requested-data">
+                    {{ csrf_field() }}
           <div class="col-md-12 col-sm-12">
             <h2>Specific Variable Request</h2>
             <div class="content-page">
+               @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        <i class="far fa-check-circle"></i> {!! session()->get('message') !!}
+                    </div>
+                @endif
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->            
                 <div class="col-md-7 col-sm-7 blog-posts">
@@ -27,17 +34,18 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-12 col-sm-12">
-                  <form class="form-horizontal" role="form">
                     <fieldset>
                       <legend>Check variable/s for your download.</legend>
                       <div class="checkbox form-group">
                        <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="checkAll" data-check-pattern="[id^='key']" /><label for="checkAll" class="lbl" >Check All</label></div>
-                       @foreach ($variable as $label)
+                        @foreach ($variable as $label)
                           <div class="col-md-12 margin-bottom-10">
                             <input type='checkbox' name="{{$label->variable_name}}" id="key{{$label->variable_name}}" value="{{$label->variable_name}}">
                             <label for="key{{$label->variable_name}}" class="lbl">{{$label->variable_label}}</label>                                   
                           </div>
                         @endforeach
+                        <input type="hidden" name="year" value="{{$puf_request->item_year}}">
+                        <input type="hidden" name="component" value="{{$cmpnt}}">
                       </div>
                     </fieldset>
                   </form>
@@ -83,6 +91,7 @@
               </div>
             </div>
           </div>
+          </form>
           <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  @if(!Route::is('login') && !Route::is('register') && !Route::is('password.request') && !Route::is('password.reset'))
+  @if(!Route::is('login') && !Route::is('register') && !Route::is('password.request') && !Route::is('password.reset') && !Route::is('home'))
   <title>{{{ $title == '' ? 'eNutrition' : 'eNutrition'.' | '.$title }}}</title>
   @elseif(Route::is('login'))
   <title>Login</title>
@@ -13,6 +13,8 @@
   <title>Send Reset Password Link</title>
   @elseif(Route::is('password.reset'))
   <title>Reset Password</title>
+  @elseif(Route::is('home'))
+  <title>My Account</title>
   @endif
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">

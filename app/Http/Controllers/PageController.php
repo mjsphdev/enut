@@ -8,10 +8,17 @@ use App\Http\Controllers\Controller;
 use App\PageContent;
 use App\ImageContent;
 use App\BrochureCategory;
-use App\File;
+use App\Files;
+use App\UserRequested;
 use DB;
+use Zipper;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Storage;
 use Crypt;
 use Response;
+use Auth;
+use File;
 
 class PageController extends Controller
 {
@@ -31,11 +38,11 @@ class PageController extends Controller
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
 
         if($year=='all'){
-            $factsandfigures = File::where('file_category', 'FactsandFigures')
+            $factsandfigures = Files::where('file_category', 'FactsandFigures')
                                ->get(['id','file_title', 'file_overview', 'file_year','file_name','file_category', 'file_thumbnail'])->paginate(1);
         }
         else{
-            $factsandfigures = File::where('file_category', 'FactsandFigures')->where('file_year', $year)
+            $factsandfigures = Files::where('file_category', 'FactsandFigures')->where('file_year', $year)
                                ->get(['id','file_title', 'file_overview', 'file_year','file_name','file_category', 'file_thumbnail'])->paginate(1);
         }
 
@@ -78,11 +85,11 @@ class PageController extends Controller
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
 
         if($year=='all'){
-            $presentations = File::where('file_category', 'Presentation')
+            $presentations = Files::where('file_category', 'Presentation')
                              ->get(['id','file_title','file_year','file_name','file_category'])->paginate(1);
         }
         else{
-            $presentations = File::where('file_category', 'Presentation')->where('file_year', $year)
+            $presentations = Files::where('file_category', 'Presentation')->where('file_year', $year)
                              ->get(['id','file_title','file_year','file_name','file_category'])->paginate(1);
         }
 
@@ -204,13 +211,164 @@ class PageController extends Controller
     }
 
     public function puf_request($id, $year){
+        if(!Auth::check()){
+            return redirect()->back()->with('message', '<a href="{{route("register")}}">Create an account</a> or <a href="{{route("login")}}">Login</a> to your ENUTRITION Account first!');
+        }
         $id = base64_decode(str_pad(strtr($id, '-_', '+/'), strlen($id) % 4, '='));
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
         $puf_request = DB::table('nns_'.$year.'.puf_items')->where('id', $id)->first();
         $component = $puf_request->item_survey.'_'.$puf_request->item_year;
-        
+
+        $cmpnt = $puf_request->item_survey;
+
         $variable = DB::table('variable_label_'.$year)->where('formno', $component)->get();
-        return view('puf_request', compact('variable', 'puf_request'))->with(['title' => 'PUF-Request']);
+        return view('puf_request', compact('variable', 'puf_request', 'cmpnt'))->with(['title' => 'PUF-Request']);
+    }
+
+    function component_description($cmpnt)
+    {
+        if($cmpnt == 'form21')
+        {
+            $component_name = 'Anthropometric-Component';
+        }
+        elseif($cmpnt == 'form82')
+        {
+            $component_name = 'Biochemical-Component';
+        }
+        elseif($cmpnt == 'form71')
+        {
+            $component_name = 'Clinical-Component';
+        }
+        elseif($cmpnt == 'form5')
+        {
+            $component_name = 'Dietary-Component(Household)';
+        }
+        elseif($cmpnt == 'form61')
+        {
+            $component_name = 'Dietary-Component(Individual)';
+        }
+        elseif($cmpnt == 'form15' || $cmpnt == 'form16')
+        {
+            $component_name = 'Food-Security-Component';
+        }
+        elseif($cmpnt == 'form43')
+        {
+            $component_name = 'Infant-and-Young-Child-Feeding-Component';
+        }
+        elseif($cmpnt == 'form31')
+        {
+            $component_name = 'Maternal-Health-and-Nutrition-Component';
+        }
+        elseif($cmpnt == 'form12')
+        {
+            $component_name = 'Socio-Economic-Component(Household)';
+        }
+        elseif($cmpnt == 'form11')
+        {
+            $component_name = 'Socio-Economic-Component(Individual)';
+        }
+
+     return $component_name;
+    }
+
+    function year_component($puf_component, $year)
+    {
+         if($year == 2008)
+         {
+             $db = 'nns_'.$year.'.'.$puf_component;
+         }
+         elseif($year == 2011)
+         {
+            $db = 'nns_'.$year.'.'.$puf_component;
+         }
+         elseif($year == 2013)
+         {
+            $db = 'nns_'.$year.'.'.$puf_component;
+         }
+         elseif($year == 2015)
+         {
+            $db = 'nns_'.$year.'.'.$puf_component;
+         }
+
+      return $db;
+    }
+
+    function valuelabel_component($year)
+    {
+        $vl_component_name = 'nns_'.$year.'.value_label';
+        
+        return $vl_component_name;
+    }
+
+    public function pufSpecificVariable(Request $request)
+    {
+       $cmpnt_no = $request->component;
+       $year = $request->year;
+       $puf = $cmpnt_no.'_'.'puf';
+       $user = Auth::user();
+       DB::disableQueryLog();
+       $now = Carbon::now();
+       $date = $now->toDateString();
+       $time = $now->toTimeString();
+       $time = str_replace(':', '', $time);
+       $first_name = $user->firstname;
+       $last_name = $user->lastname;
+       $user_id = $user->id;
+       $name = $first_name. '-' . $last_name;
+       $name = preg_replace('/\s+/', '-', $name);
+       $email = $user->email;
+       $combined = $name. '-' . $date;
+       $combined = $combined. '-' .$time;
+       $dt = $date. '-' . $time;
+       
+       $component = $this->component_description($cmpnt_no);
+       $dbyear_component = $this->year_component($puf, $year);
+       $vl_component = $this->valuelabel_component($year);
+       $value_label_component = $cmpnt_no.'_'.$year;
+
+       //dataset
+       $req = DB::table($dbyear_component)->get($request->except('_token', 'year', 'component'));
+       $req = json_decode(json_encode($req), true);
+       array_unshift($req, array_keys($req[0]));
+       $path = storage_path('Csv'.'/'.$combined);
+       File::makeDirectory($path);
+
+       $FH = fopen(storage_path('Csv'.'/'.$combined.'/'.$combined.'-'.$component.'-dataset.'.'csv'), "w") or die("Unable to open file!");
+       foreach ($req as $row) { 
+           fputcsv($FH, $row);
+       }
+       fclose($FH);
+
+       //data_dictionary
+       $value_label = DB::table($vl_component)->where('formno', $value_label_component)->get(['formno', 'variable_name', 'variable_label', 'var_value', 'value_label']);
+       $value_label = json_decode(json_encode($value_label), true);
+       $columns = array('formno', 'variable_name', 'variable_label', 'var_value', 'value_label');
+
+       $dictionary = fopen(storage_path('Csv'.'/'.$combined.'/'.$combined.'-'.$component.'-data-dictionary.'.'csv'), "w") or die("Unable to open file!");
+       fputcsv($dictionary, $columns);
+       foreach ($value_label as $row) { 
+           fputcsv($dictionary, $row);
+       }
+       fclose($dictionary);
+      
+      $files = glob(storage_path('Csv/'.$combined.'/'));
+      Zipper::make(storage_path('Zip'.'/'.$combined.'-'.$component.'.zip'))->add($files);
+      $zip_file = $combined.'-'.$component.'.zip';
+      $name = str_replace('-',' ',$name);
+      UserRequested::create([
+        'name' => $name,
+        'email' => $email,
+        'gender' => $user->gender,
+        'country' => $user->country, 
+        'company' => $user->company, 
+        'data_requested' => $component, 
+        'date' => $dt,
+        'zip_file' => $zip_file
+
+      ]);
+
+      return redirect()->back()->with('message', 'Dataset Requested Successfully');
+
     }
 
 

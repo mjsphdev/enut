@@ -15,7 +15,7 @@
 				<table align="center" border="0" cellpadding="0" cellspacing="0" width="600"
 					style="border: 1px solid #cccccc; border-collapse: collapse;">
 					<tr>
-						<td align="center" bgcolor="#27ae60"
+						<td align="center" bgcolor="#2a8ccb"
 							style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
                     <img src="https://i.ibb.co/GJYSdHP/e.png" alt="E-NUTRITION" width="300" height="100"
 								style="display: block;" />
@@ -26,8 +26,7 @@
 							<table border="0" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
-										<b>Dear Mark,</b>
-										<b>Greetings!</b>
+										<b>Dear {{$name}},</b>
 									</td>
 								</tr>
 								<tr>
@@ -53,7 +52,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td bgcolor="#27ae60" style="padding: 30px 30px 30px 30px;">
+						<td bgcolor="#2a8ccb" style="padding: 30px 30px 30px 30px;">
 							<table border="0" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;"

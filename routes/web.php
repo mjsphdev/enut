@@ -13,7 +13,9 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/my-account', 'HomeController@index')->name('home');
+Route::post('/update-account', 'HomeController@updateAccount')->name('update.account');
+Route::get('/sendemail', 'SendZipController@sendEmail')->name('send-email');
 
 Route::group(['middleware' => ['guest'], 'as' => 'public.'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'PageController@index']);
@@ -38,6 +40,7 @@ Route::group(['middleware' => ['guest'], 'as' => 'public.'], function () {
     Route::get('/public-use-file-preview/{id}/{year}', ['as' => 'puf-preview', 'uses' => 'PageController@puf_preview']);
     Route::get('/public-use-file-request/{id}/{year}', ['as' => 'puf-request', 'uses' => 'PageController@puf_request']);
     Route::get('/public-use-file-download/{year}/{filename}', ['as' => 'puf-download', 'uses' => 'PageController@puf_download']);
+    Route::post('puf/request', 'PageController@pufSpecificVariable');
 
     Route::get('/{page_title}', ['as' => 'privacy', 'uses' => 'PageController@privacy']);
 
