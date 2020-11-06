@@ -73,19 +73,28 @@
           <!-- TESTIMONIALS -->
           <div class="col-md-5 testimonials-v1">
             <div id="myCarousel" class="carousel slide">
+            <h3><a href="javascript:;">Announcements</a></h3>
               <!-- Carousel items -->
               <div class="carousel-inner">
-                <div class="active item">
-                  <blockquote><p>Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.</p></blockquote>
+                @for($announce = 0; $announce < count($announcements); $announce++ )
+                <div class="{{ $announce == 0 ? 'active' : '' }} item">
+                  <blockquote><p>{!!  str_limit($announcements[$announce]['content'], 300, '') !!}
+                  @if(strlen($announcements[$announce]['content']) > 300)
+                      <span id="dots">...</span>
+                      <span id="more">{!! substr($announcements[$announce]['content'], 300) !!}</span>
+                  @endif
+                  <button onclick="readMore()" id="moreBtn" class="btn btn-primary btn-sm">Read more</button>
+                  </p></blockquote>
                   <div class="carousel-info">
                     <img class="pull-left" src="assets/pages/img/people/img1-small.jpg" alt="">
                     <div class="pull-left">
-                      <span class="testimonials-name">Lina Mars</span>
-                      <span class="testimonials-post">Commercial Director</span>
+                      <span class="testimonials-name">{{$announcements[$announce]['title']}}</span>
+                      <span class="testimonials-post">{{Carbon\Carbon::parse($announcements[$announce]['created_at'])->diffForHumans()}}</span>
                     </div>
                   </div>
                 </div>
-                <div class="item">
+                @endfor
+                <!-- <div class="item">
                   <blockquote><p>Raw denim you Mustache cliche tempor, williamsburg carles vegan helvetica probably haven't heard of them jean shorts austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.</p></blockquote>
                   <div class="carousel-info">
                     <img class="pull-left" src="assets/pages/img/people/img5-small.jpg" alt="">
@@ -104,7 +113,7 @@
                       <span class="testimonials-post">Commercial Director</span>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <!-- Carousel nav -->

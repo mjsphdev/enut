@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use App\Http\Controllers\Controller;
 use App\PageContent;
 use App\ImageContent;
+use App\Announcement;
 use App\BrochureCategory;
 use App\Files;
 use App\UserRequested;
@@ -30,7 +31,9 @@ class PageController extends Controller
         $images = ImageContent::where('image_slug', 'home')->where('status', 1)->where('image_type', 'carousel')
                   ->get(['id', 'image_title', 'image_subtitle', 'image_filename'])->toArray();
 
-        return view('index', compact('content', 'images'))->with(['title' => 'Home']);
+        $announcements = Announcement::get()->toArray();
+
+        return view('index', compact('content', 'images', 'announcements'))->with(['title' => 'Home']);
     }
 
     public function factsandfigures($year)
