@@ -374,5 +374,19 @@ class PageController extends Controller
 
     }
 
+    public function brochure($year){
+        $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
+
+        if($year=='all'){
+            $brochure = BrochureCategory::orderBy('brochure_year', 'DESC')->get(['brochure_year', 'brochure_thumbnail'])->paginate(10);
+        }else{
+            $brochure = DB::table('upload_brochures')
+                        ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
+                        ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')->get();
+        }
+
+        return view('brochure', compact('brochure'))->with(['title' => 'Brochure']);
+    }
+
 
 }

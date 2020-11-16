@@ -57,6 +57,7 @@
   <link href="{{asset('assets/corporate/css/themes/blue.css')}}" rel="stylesheet" id="style-color">
   <link href="{{asset('assets/corporate/css/custom.css')}}" rel="stylesheet">
   <link href="{{asset('assets/plugins/uniform/css/uniform.default.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/pages/css/gallery.css')}}" rel="stylesheet">
   <!-- Theme styles END -->
 </head>
 <!-- Head END -->
@@ -94,6 +95,11 @@
     <script src="{{asset('assets/pages/scripts/bs-carousel.js')}}" type="text/javascript"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('assets/js/custom.js')}}" type="text/javascript"></script>
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="{{asset('assets/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
+
+    <script src="{{asset('assets/corporate/scripts/layout.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             Layout.init();    
