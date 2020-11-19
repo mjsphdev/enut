@@ -64,9 +64,13 @@
 
 <!-- Body BEGIN -->
 <body class="corporate">
-
     @include('includes.topbar')
-
+    <div class="container-fluid timeclass">
+     <div class="container padding-top-10 margin-bottom-10">
+        <div>Philippine Standard Time:</div>
+        <div id="pst-time" class=" "></div>
+     </div>
+    </div>
     @include('includes.header')
 
     @yield('content')
@@ -109,6 +113,15 @@
             Layout.initNavScrolling();
         });
         var url = '{{ URL::asset("assets/corporate/img/up.png") }}'
+    </script>
+
+    <script type="text/javascript" id="gwt-pst">
+    (function(d, eId) {
+    	var js, gjs = d.getElementById(eId);
+    	js = d.createElement('script'); js.id = 'gwt-pst-jsdk';
+    	js.src = "//gwhs.i.gov.ph/pst/gwtpst.js?"+new Date().getTime();
+    	gjs.parentNode.insertBefore(js, gjs);
+    }(document, 'gwt-pst'));
     </script>
     
 

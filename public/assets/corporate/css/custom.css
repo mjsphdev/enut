@@ -4,7 +4,7 @@
     top:0;
     left:0;
     height: 5px;
-    background-color:#0d4e86;
+    background-color:#2a8ccb;
     z-index: 999;
 }
 
@@ -47,4 +47,10 @@
 }
 .text-color:hover{
     color: #d4d4d4 !important;
+}
+
+.timeclass{
+	background:#2a8ccb; 
+	color:#ffffff; 
+	font-weight:bold
 }

@@ -11,6 +11,7 @@ use App\Announcement;
 use App\BrochureCategory;
 use App\Files;
 use App\UserRequested;
+use App\Faq;
 use DB;
 use Zipper;
 use Carbon\Carbon;
@@ -387,6 +388,47 @@ class PageController extends Controller
 
         return view('brochure', compact('brochure'))->with(['title' => 'Brochure']);
     }
+
+    public function acknowledgement()
+    {
+        $content = PageContent::where('slug', 'acknowledgement')->firstOrFail(['id', 'page_title', 'page_content', 'slug']);
+        return view('acknowledgement', compact('content'))->with(['title' => 'Acknowledgement']);
+    }
+
+    public function faq()
+    {
+        $faqs = Faq::get(['id', 'question', 'answer']);
+        return view('faq', compact('faqs'))->with(['title' => 'FAQs']);
+    }
+
+    public function sitemap()
+    {
+        $years = DB::table('surveys')->orderBy('year', 'DESC')->get(['year']);
+        $puf = new Collection;
+        foreach($years as $year){
+            try{
+                $result = DB::table('nns_'.$year->year.'.puf_items')->get();
+                $puf = $puf->concat($result);
+            }
+            catch(\Exception $e){
+                
+            }
+        }
+
+        $surveys = new Collection;
+        foreach($puf as $puf_year){
+            try{
+                $year_results = DB::table('surveys')->where('year', $puf_year->item_year)->get();
+                $surveys = $surveys->concat($year_results);
+            }
+            catch(\Exception $e){
+                
+            }
+            
+        }
+        return view('sitemap', compact('surveys'))->with(['title' => 'Sitemap']);
+    }
+
 
 
 }

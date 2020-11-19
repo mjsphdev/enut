@@ -186,6 +186,12 @@
                   <img src="{{asset('assets/img/logo/ifnri.png')}}" class="color-img img-responsive" alt="">
                 </a>
               </div>   
+              <div class="client-item">
+                <a href="{{route('public.sitemap')}}">
+                  <img src="{{asset('assets/img/logo/sitemap_gray.png')}}" class="img-responsive" alt="">
+                  <img src="{{asset('assets/img/logo/sitemap.png')}}" class="color-img img-responsive" alt="">
+                </a>
+              </div>   
             </div>
           </div>          
         </div>

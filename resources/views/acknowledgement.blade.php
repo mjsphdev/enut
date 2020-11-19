@@ -1,17 +1,19 @@
 @extends('layouts.main')
 
 @section('content')
+
 <div class="main">
       <div class="container">
         <ul class="breadcrumb">
             <li><a href="{{route('public.home')}}">Home</a></li>
-            <li class="active">About Us</li>
+            <li><a href="{{route('public.about')}}">About Us</a></li>
+            <li class="active">Acknowledgement</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
-            <h1>About NNS</h1>
+            <h1>Acknowledgement</h1>
             <div class="content-page">
               <div class="row margin-bottom-20">
                 <!-- BEGIN INFO BLOCK -->               
@@ -37,21 +39,12 @@
                 <!-- END CAROUSEL -->
               </div>
 
-              <div class="row margin-bottom-30">
-                <div class="col-md-7">
-                <h3>Related:</h3>
-                 <ul>
-                  <li><a href="{{route('public.acknowledgement')}}">ACKNOWLEDGMENT - NNS Philippines, 2013</a></li>
-                  <li><a href="{{route('public.faq')}}">FAQS</a></li>
-                 </ul>
-                </div>  
-              </div>
-
             </div>
           </div>
           <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
+
       </div>
-    </div>
+</div>
 @endsection
