@@ -375,18 +375,36 @@ class PageController extends Controller
 
     }
 
-    public function brochure($year){
+    public function brochure($year, $group){
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
+        $grp = base64_decode(str_pad(strtr($group, '-_', '+/'), strlen($group) % 4, '='));
 
         if($year=='all'){
             $brochure = BrochureCategory::orderBy('brochure_year', 'DESC')->get(['brochure_year', 'brochure_thumbnail'])->paginate(10);
         }else{
-            $brochure = DB::table('upload_brochures')
-                        ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
-                        ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')->get();
+            if($grp == 'all'){
+                $brochure = DB::table('upload_brochures')
+                            ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
+                            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
+                            ->where('brochure_categories.brochure_year', $year)->get();
+            }else{
+                $brochure = DB::table('upload_brochures')
+                            ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
+                            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
+                            ->where('brochure_categories.brochure_year', $year)->where('upload_brochures.brochure_group', $grp)->get();
+            }
+            
+            
+            $groups = DB::table('upload_brochures')
+                      ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
+                      ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
+                      ->where('brochure_categories.brochure_year', $year)->distinct('upload_brochures.brochure_group')->get();
+            $currentYear = $year;
         }
+        $surveys = DB::table('brochure_categories')->join('surveys', 'surveys.year', '=', 'brochure_categories.brochure_year')
+                   ->select('surveys.year', 'surveys.survey_type')->distinct('surveys.year')->get();
 
-        return view('brochure', compact('brochure'))->with(['title' => 'Brochure']);
+        return view('brochure', compact('brochure', 'year', 'currentYear', 'surveys', 'groups', 'grp'))->with(['title' => 'Brochure']);
     }
 
     public function acknowledgement()

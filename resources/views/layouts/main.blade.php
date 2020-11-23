@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  @if(!Route::is('login') && !Route::is('register') && !Route::is('password.request') && !Route::is('password.reset') && !Route::is('home'))
+  @if(!Route::is('login') && !Route::is('register') && !Route::is('password.request') && !Route::is('password.reset') && !Route::is('home') && !Route::is('404'))
   <title>{{{ $title == '' ? 'eNutrition' : 'eNutrition'.' | '.$title }}}</title>
   @elseif(Route::is('login'))
   <title>Login</title>
