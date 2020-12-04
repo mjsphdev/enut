@@ -16,22 +16,10 @@
                 <!-- First slide -->
 
                 @for ($carousel = 0; $carousel < count($images); $carousel++)
-               <!-- <div class="carousel-item {{ $carousel == 0 ? 'active' : '' }}" style="background-image: url('images/pageimages/carousel/{{$images[$carousel]['image_filename']}}')">
-                  <div class="carousel-caption d-none d-md-block">
-                     <h3>{{$images[$carousel]['image_title']}}</h3>
-                     <p>{{$images[$carousel]['image_subtitle']}}</p>
-                  </div>
-               </div> -->
-
                <div class="item {{ $carousel == 0 ? 'active' : '' }}" style="background-image: url('{{config('images.base_url'). $images[$carousel]['image_filename']}}'); background-size:cover; background-position:center center">
                     <div class="container">
                         <div class="carousel-position-six text-uppercase text-center">
                             <h2 class="margin-bottom-20 animate-delay carousel-title-v5" data-animation="animated fadeInDown">
-                            <!-- {{$images[$carousel]['image_title']}}<br/>
-                                <span class="carousel-title-normal">{{$images[$carousel]['image_subtitle']}}</span>
-                            </h2>
-                            <p class="carousel-subtitle-v5 border-top-bottom margin-bottom-30" data-animation="animated fadeInDown">This is what you were looking for</p>
-                            <a class="carousel-btn-green" href="#" data-animation="animated fadeInUp">Purchase Now!</a> -->
                         </div>
                     </div>
                 </div>
@@ -94,26 +82,6 @@
                   </div>
                 </div>
                 @endfor
-                <!-- <div class="item">
-                  <blockquote><p>Raw denim you Mustache cliche tempor, williamsburg carles vegan helvetica probably haven't heard of them jean shorts austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.</p></blockquote>
-                  <div class="carousel-info">
-                    <img class="pull-left" src="assets/pages/img/people/img5-small.jpg" alt="">
-                    <div class="pull-left">
-                      <span class="testimonials-name">Kate Ford</span>
-                      <span class="testimonials-post">Commercial Director</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <blockquote><p>Reprehenderit butcher stache cliche tempor, williamsburg carles vegan helvetica.retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p></blockquote>
-                  <div class="carousel-info">
-                    <img class="pull-left" src="assets/pages/img/people/img2-small.jpg" alt="">
-                    <div class="pull-left">
-                      <span class="testimonials-name">Jake Witson</span>
-                      <span class="testimonials-post">Commercial Director</span>
-                    </div>
-                  </div>
-                </div> -->
               </div>
 
               <!-- Carousel nav -->
@@ -124,29 +92,6 @@
           <!-- END TESTIMONIALS -->
         </div>                
         <!-- END TABS AND TESTIMONIALS -->
-
-        <!-- BEGIN STEPS -->
-        <!-- <div class="row margin-bottom-40 front-steps-wrapper front-steps-count-3">
-          <div class="col-md-4 col-sm-4 front-step-col">
-            <div class="front-step front-step1">
-              <h2>Goal definition</h2>
-              <p>Lorem ipsum dolor sit amet sit consectetur adipisicing eiusmod tempor.</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 front-step-col">
-            <div class="front-step front-step2">
-              <h2>Analyse</h2>
-              <p>Lorem ipsum dolor sit amet sit consectetur adipisicing eiusmod tempor.</p>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 front-step-col">
-            <div class="front-step front-step3">
-              <h2>Implementation</h2>
-              <p>Lorem ipsum dolor sit amet sit consectetur adipisicing eiusmod tempor.</p>
-            </div>
-          </div>
-        </div> -->
-        <!-- END STEPS -->
 
         <!-- BEGIN CLIENTS -->
         <div class="row margin-bottom-40 our-clients">

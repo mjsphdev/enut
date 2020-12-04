@@ -29,29 +29,28 @@
                     <div class="col-md-12 col-sm-12">
                       <h3><a href="javascript:;">{{$puf_request->item_title}}</a></h3>
                       <p>{{$puf_request->item_description}}</p>
-                    </div>
-                   
-            <div class="content-form-page">
-              <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <fieldset>
-                      <legend>Check variable/s for your download.</legend>
-                      <div class="checkbox form-group">
-                       <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="checkAll" data-check-pattern="[id^='key']" /><label for="checkAll" class="lbl" >Check All</label></div>
-                        @foreach ($variable as $label)
-                          <div class="col-md-12 margin-bottom-10">
-                            <input type='checkbox' name="{{$label->variable_name}}" id="key{{$label->variable_name}}" value="{{$label->variable_name}}">
-                            <label for="key{{$label->variable_name}}" class="lbl">{{$label->variable_label}}</label>                                   
-                          </div>
-                        @endforeach
-                        <input type="hidden" name="year" value="{{$puf_request->item_year}}">
-                        <input type="hidden" name="component" value="{{$cmpnt}}">
-                      </div>
-                    </fieldset>
-                  </form>
-                </div>
-              </div>
-            </div>
+                    </div>                 
+                     <div class="content-form-page">
+                       <div class="row">
+                         <div class="col-md-12 col-sm-12">
+                             <fieldset>
+                               <legend>Check variable/s for your download.</legend>
+                               <div class="checkbox form-group">
+                                <div class="col-md-12 margin-bottom-20"><input type="checkbox" id="checkAll" data-check-pattern="[id^='key']" /><label for="checkAll" class="lbl" >Check All</label></div>
+                                 @foreach ($variable as $label)
+                                   <div class="col-md-12 margin-bottom-10">
+                                     <input type='checkbox' name="{{$label->variable_name}}" id="key{{$label->variable_name}}" value="{{$label->variable_name}}">
+                                     <label for="key{{$label->variable_name}}" class="lbl">{{$label->variable_label}}</label>                                   
+                                   </div>
+                                 @endforeach
+                                 <input type="hidden" name="year" value="{{$puf_request->item_year}}">
+                                 <input type="hidden" name="component" value="{{$cmpnt}}">
+                               </div>
+                             </fieldset>
+                           </form>
+                         </div>
+                       </div>
+                     </div>
                     </div>
                     <!-- <hr class="blog-post-sep">    -->
                 </div>

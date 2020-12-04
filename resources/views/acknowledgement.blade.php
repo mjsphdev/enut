@@ -35,7 +35,7 @@
                       </div>
                     </div>
                   </div>                
-                </div>
+                </div>-
                 <!-- END CAROUSEL -->
               </div>
 
@@ -44,7 +44,6 @@
           <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
-
       </div>
 </div>
 @endsection
