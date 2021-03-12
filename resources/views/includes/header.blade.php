@@ -34,7 +34,7 @@
                         </ul>
                       </div>
                       <div class="col-md-4 header-navigation-col">
-                      <h4><a href="{{ route('public.brochure',[rtrim(strtr(base64_encode('all'), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">Brochure</a></h4>
+                      <h4><a href="{{ route('public.brochure',[rtrim(strtr(base64_encode('all'), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">Infographics</a></h4>
                         <ul>
                           @foreach ($br_surveys as $br)
 					                 <li><a href="{{ route('public.brochure', [rtrim(strtr(base64_encode($br->year), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">{{$br->year}} - {{$br->survey_type}}</a></li>

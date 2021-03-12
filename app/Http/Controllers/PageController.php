@@ -216,7 +216,7 @@ class PageController extends Controller
 
     public function puf_request($id, $year){
         if(!Auth::check()){
-            return redirect()->back()->with('message', '<a href="{{route("register")}}">Create an account</a> or <a href="{{ route("login") }}">Login</a> to your ENUTRITION Account first!');
+            return redirect()->back()->with('message', 'True');
         }
         $id = base64_decode(str_pad(strtr($id, '-_', '+/'), strlen($id) % 4, '='));
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
@@ -398,12 +398,11 @@ class PageController extends Controller
             $groups = DB::table('upload_brochures')
                       ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
                       ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
-                      ->where('brochure_categories.brochure_year', $year)->distinct('upload_brochures.brochure_group')->get();
+                      ->groupBy('upload_brochures.brochure_group')->get();
             $currentYear = $year;
         }
         $surveys = DB::table('brochure_categories')->join('surveys', 'surveys.year', '=', 'brochure_categories.brochure_year')
                    ->select('surveys.year', 'surveys.survey_type')->distinct('surveys.year')->get();
-
         return view('brochure', compact('brochure', 'year', 'currentYear', 'surveys', 'groups', 'grp'))->with(['title' => 'Brochure']);
     }
 

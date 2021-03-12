@@ -96,6 +96,7 @@
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
     <script src="{{asset('assets/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
     <script src="{{asset('assets/plugins/owl.carousel/owl.carousel.min.js')}}" type="text/javascript"></script><!-- slider for products -->
+    <script src="{{asset('assets/plugins/uniform/jquery.uniform.min.js')}}" type="text/javascript"></script>
 
     <script src="{{asset('assets/corporate/scripts/layout.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/pages/scripts/bs-carousel.js')}}" type="text/javascript"></script>

@@ -66,7 +66,7 @@
         <div class="row">
           <!-- BEGIN COPYRIGHT -->
           <div class="col-md-4 col-sm-4 padding-top-10">
-            All rights reserved © 2020
+            All rights reserved © {{\Carbon\Carbon::now()->year}}
           </div>
         </div>
       </div>

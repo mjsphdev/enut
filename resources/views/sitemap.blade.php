@@ -30,7 +30,7 @@
 				            @endforeach	  
                         </ul>
                     </li>
-                    <li><i class="fa fa-angle-right"></i> <a href="{{ route('public.brochure',[rtrim(strtr(base64_encode('all'), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">Brochure</a>
+                    <li><i class="fa fa-angle-right"></i> <a href="{{ route('public.brochure',[rtrim(strtr(base64_encode('all'), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">Infographics</a>
                         <ul class="list-unstyled">
                             @foreach ($br_surveys as $br)
 					          <li><i class="fa fa-angle-right"></i><a href="{{ route('public.brochure', [rtrim(strtr(base64_encode($br->year), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">{{$br->year}} - {{$br->survey_type}}</a></li>

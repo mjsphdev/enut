@@ -6,7 +6,7 @@
       <div class="container">
         <ul class="breadcrumb">
             <li><a href="{{route('public.home')}}">Home</a></li>
-            <li class="active">Brochure</li>
+            <li class="active">Infographics</li>
         </ul>
 
          <!-- BEGIN SIDEBAR & CONTENT -->

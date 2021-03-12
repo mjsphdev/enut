@@ -86,5 +86,4 @@
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
-    <script src="{{asset('assets/plugins/uniform/jquery.uniform.min.js')}}" type="text/javascript"></script>
 @endsection

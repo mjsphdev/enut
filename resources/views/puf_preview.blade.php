@@ -16,7 +16,8 @@
             <div class="content-page">
                 @if(session()->has('message'))
                     <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle"></i> {!!session()->get('message')!!}
+                        <i class="fas fa-exclamation-circle"></i> 
+                        <a href="{{ route('register')}}">Create an account</a> or <a href="{{ route('login') }}">Login</a> to your ENUTRITION Account first!
                     </div>
                 @endif
               <div class="row">

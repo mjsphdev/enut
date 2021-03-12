@@ -36,7 +36,7 @@ Route::group(['middleware' => ['guest'], 'as' => 'public.'], function () {
     Route::get('/presentation/{year}', ['as' => 'presentation', 'uses' => 'PageController@presentation']);
     Route::get('/presentation-preview/{year}/{filename}', ['as' => 'presentation-preview', 'uses' => 'PageController@presentation_preview']);
 
-    Route::get('/brochures/{year}/{group}', ['as' => 'brochure', 'uses' => 'PageController@brochure']);
+    Route::get('/infographics/{year}/{group}', ['as' => 'brochure', 'uses' => 'PageController@brochure']);
 
     Route::get('/public-use-file/{pufyear}', ['as' => 'puf', 'uses' => 'PageController@puf']);
     Route::get('/public-use-file-preview/{id}/{year}', ['as' => 'puf-preview', 'uses' => 'PageController@puf_preview']);
