@@ -14,7 +14,6 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <!-- First slide -->
-
                 @for ($carousel = 0; $carousel < count($images); $carousel++)
                <div class="item {{ $carousel == 0 ? 'active' : '' }}" style="background-image: url('{{config('images.base_url'). $images[$carousel]['image_filename']}}'); background-size:cover; background-position:center center">
                     <div class="container">
@@ -23,7 +22,8 @@
                         </div>
                     </div>
                 </div>
-               @endfor
+                <div class="black-overlay"></div>
+               @endfor    
             </div>
 
             <!-- Controls -->

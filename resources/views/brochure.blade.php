@@ -20,18 +20,19 @@
                @foreach($brochure as $br)
                @if($year == "all")
                 <div class="col-md-3 col-sm-4 gallery-item">
-                  <a data-rel="fancybox-button" href="{{config('br.base_url'). $br->brochure_year . '/'. $br->brochure_thumbnail }}" class="fancybox-button">
-                    <img alt="" src="{{config('br.base_url'). $br->brochure_year . '/'. $br->brochure_thumbnail }}" class="img-responsive">
+                  <a data-rel="fancybox-button" href="{{config('br.base_url'). $br->brochure_year . '/thumbnail/'. $br->brochure_thumbnail }}" class="fancybox-button">
+                    <img alt="" src="{{config('br.base_url'). $br->brochure_year . '/thumbnail/'. $br->brochure_thumbnail }}" class="img-responsive">
                     <div class="zoomix"><i class="fa fa-search"></i></div>
                   </a> 
                   <a class="btn btn-primary text-color" href="{{ route('public.brochure', [rtrim(strtr(base64_encode($br->brochure_year), '+/', '-_'), '='), rtrim(strtr(base64_encode('all'), '+/', '-_'), '=')]) }}">View More <i class="fa fa-eye"></i></a>
                 </div>    
                 @else
                 <div class="col-md-3 col-sm-4 gallery-item">
-                  <a data-rel="fancybox-button" href="{{config('br.base_url'). $br->brochure_year . '/'. $br->brochure_group . '/' . $br->brochure_filename }}" class="fancybox-button">
-                    <img alt="" src="{{config('br.base_url'). $br->brochure_year . '/'. $br->brochure_group . '/' . $br->brochure_filename }}" class="img-responsive">
+                  <a data-rel="fancybox-button" href="{{config('br.base_url'). $br->brochure_year . '/'. $br->province . '/' . $br->brochure_filename }}" class="fancybox-button">
+                    <img alt="" src="{{config('br.base_url'). $br->brochure_year . '/'. $br->province . '/' . $br->brochure_filename }}" class="img-responsive">
                     <div class="zoomix"><i class="fa fa-search"></i></div>
                   </a> 
+                  <small class="font-weight-bold">Page {{ $br->page_no }}</small>
                 </div>    
                 @endif
                 @endforeach

@@ -42,22 +42,23 @@ class PageController extends Controller
         $year = base64_decode(str_pad(strtr($year, '-_', '+/'), strlen($year) % 4, '='));
 
         if($year=='all'){
-            $factsandfigures = Files::where('file_category', 'FactsandFigures')
-                               ->get(['id','file_title', 'file_overview', 'file_year','file_name','file_category', 'file_thumbnail'])->paginate(1);
+            $factsandfigures = Files::where('file_category', 'Facts&Figures')
+                               ->orderBy('file_year', 'DESC')
+                               ->get(['id','file_title', 'file_overview', 'file_year','file_name','file_category', 'file_thumbnail'])->paginate(10);
         }
         else{
-            $factsandfigures = Files::where('file_category', 'FactsandFigures')->where('file_year', $year)
-                               ->get(['id','file_title', 'file_overview', 'file_year','file_name','file_category', 'file_thumbnail'])->paginate(1);
+            $factsandfigures = Files::where('file_category', 'Facts&Figures')->where('file_year', $year)
+                               ->get(['id','file_title', 'file_overview', 'file_year','file_name','file_category', 'file_thumbnail'])->paginate(10);
         }
 
-        $surveys = DB::table('files')->where('file_category', 'FactsandFigures')->join('surveys', 'surveys.year', '=', 'files.file_year')
+        $surveys = DB::table('files')->where('file_category', 'Facts&Figures')->join('surveys', 'surveys.year', '=', 'files.file_year')
                    ->select('surveys.year', 'surveys.survey_type')->distinct('surveys.year')->get();
-        
-        $all = count(DB::table('files')->where('file_category', 'FactsandFigures')->get());
+
+        $all = count(DB::table('files')->where('file_category', 'Facts&Figures')->get());
 
         $counts = DB::table('files')
             ->select("file_year" ,DB::raw("(COUNT(*)) as count"))
-            ->where('file_category', 'FactsandFigures')
+            ->where('file_category', 'Facts&Figures')
             ->groupBy(DB::raw("file_year"))
             ->orderBy(DB::raw("file_year"), 'DESC')
             ->get(['year' => 'file_year', 'count' => 'count'])->toArray();
@@ -75,7 +76,7 @@ class PageController extends Controller
 
         $filename = base64_decode(str_pad(strtr($filename, '-_', '+/'), strlen($filename) % 4, '='));
 
-        $filepath = config('ff.base_url').$year.'/'.'Facts&Figures/'.$filename;
+        $filepath = config('ff.base_url').'Facts&Figures/'.$year.'/'.$filename;
 
         $response = Response::make(readfile($filepath), 200);
 
@@ -90,15 +91,16 @@ class PageController extends Controller
 
         if($year=='all'){
             $presentations = Files::where('file_category', 'Presentation')
-                             ->get(['id','file_title','file_year','file_name','file_category'])->paginate(1);
+                             ->orderBy('file_year', 'DESC')
+                             ->get(['id','file_title','file_year','file_name','file_category'])->paginate(10);
         }
         else{
             $presentations = Files::where('file_category', 'Presentation')->where('file_year', $year)
-                             ->get(['id','file_title','file_year','file_name','file_category'])->paginate(1);
+                             ->get(['id','file_title','file_year','file_name','file_category'])->paginate(10);
         }
 
         $surveys = DB::table('files')->where('file_category', 'Presentation')->join('surveys', 'surveys.year', '=', 'files.file_year')
-                   ->select('surveys.year', 'surveys.survey_type')->distinct('surveys.year')->get();
+                   ->select('surveys.year', 'surveys.survey_type')->distinct('surveys.year')->orderBy('surveys.year', 'DESC')->get();
 
         $all = count(DB::table('files')->where('file_category', 'Presentation')->get());
 
@@ -122,7 +124,7 @@ class PageController extends Controller
 
         $filename = base64_decode(str_pad(strtr($filename, '-_', '+/'), strlen($filename) % 4, '='));
 
-        $filepath = config('ff.base_url').$year.'/'.'Presentation/'.$filename;
+        $filepath = config('ff.base_url').'Presentation/'.$year.'/'.$filename;
 
         $response = Response::make(readfile($filepath), 200);
 
@@ -176,16 +178,20 @@ class PageController extends Controller
             }
             
         }
+
+        $surveys = $surveys->unique('year');
+
         if($pufyear == 'all'){
-            $puf_items = $puf->paginate(2);
+            $puf_items = $puf->paginate(10);
         }
         else{
-            $puf_items = $puf->where('item_year', $pufyear)->paginate(2);
+            $puf_items = $puf->where('item_year', $pufyear)->paginate(10);
         }
 
         $all = count($puf);
 
         $counts = $puf->groupBy("item_year");
+     
 
         return view('puf', compact('puf_items', 'surveys', 'pufyear', 'counts', 'all'))->with(['title' => 'PUF']);
     }
@@ -381,16 +387,23 @@ class PageController extends Controller
 
         if($year=='all'){
             $brochure = BrochureCategory::orderBy('brochure_year', 'DESC')->get(['brochure_year', 'brochure_thumbnail'])->paginate(10);
+            $groups = DB::table('upload_brochures')
+            ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
+            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
+            ->groupBy('upload_brochures.brochure_group')->get();
+            $currentYear = $year;
         }else{
             if($grp == 'all'){
                 $brochure = DB::table('upload_brochures')
                             ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
-                            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
+                            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename',
+                              'upload_brochures.province')->orderBy('upload_brochures.brochure_group', 'ASC')->orderBy('upload_brochures.page_no', 'ASC')
                             ->where('brochure_categories.brochure_year', $year)->get();
             }else{
                 $brochure = DB::table('upload_brochures')
                             ->join('brochure_categories', 'brochure_categories.id', '=', 'upload_brochures.bt_id')
-                            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename')
+                            ->select('brochure_categories.id', 'brochure_categories.brochure_year', 'upload_brochures.page_no', 'upload_brochures.brochure_group', 'upload_brochures.brochure_filename',
+                              'upload_brochures.province')->orderBy('upload_brochures.brochure_group', 'ASC')->orderBy('upload_brochures.page_no', 'ASC')
                             ->where('brochure_categories.brochure_year', $year)->where('upload_brochures.brochure_group', $grp)->get();
             }
             

@@ -18,7 +18,7 @@
                   @foreach($factsandfigures as $ff)
                     <div class="row">
                     <div class="col-md-4 col-sm-4">
-                      <img class="img-responsive" alt="" src="{{config('ff.base_url'). $ff->file_year . '/Facts&Figures/Thumbnail/'. $ff->file_thumbnail }}">
+                      <img class="img-responsive" alt="" src="{{config('ff.base_url').$ff->file_category.'/'. $ff->file_year . '/Thumbnail/'. $ff->file_thumbnail }}">
                     </div>
                     <div class="col-md-8 col-sm-8">
                       <h3><a href="{{route('public.ff-preview',[rtrim(strtr(base64_encode($ff->file_year), '+/', '-_'), '='), rtrim(strtr(base64_encode($ff->file_name), '+/', '-_'), '=')])}}" target="_blank">{{$ff->file_title}}</a></h3>
